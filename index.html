@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Survey</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        form {
+            width: 50%;
+            margin: 0 auto;
+        }
+        #results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form id="surveyForm">
+        <h1>Employee Interests Survey form</h1>
+        Enter your name:
+        <input type="text" name="userName" size="35" maxlength="50" value=""><br><br>
+
+        Enter your password:
+        <input type="password" name="p_wd" value=""><br><br>
+
+        Enter your department:
+        <input type="text" name="Deptt" size="35" maxlength="50" value=""> <br> <br>
+
+        Tell us a little about yourself:
+        <textarea name="Comments" cols="30" rows="4"></textarea> <br> <br>
+
+        Do you exercise at home?
+        <input type="radio" name="exe" value="1">Yes
+        <input type="radio" name="exe" value="2">No <br><br>
+
+        How do you like to read about your favorite topics?
+        <input type="checkbox" name="Books">Books
+        <input type="checkbox" name="Web">Online resources
+        <input type="checkbox" name="Phone">Phone apps
+        <input type="checkbox" name="Magazines">Magazines <br><br>
+
+        What genre of movies do you like?
+        <select name="moviepref">
+            <option value="1">Comedy</option>
+            <option value="2">Romance</option>
+            <option value="3">Thriller</option>
+            <option value="4">Horror</option>
+            <option value="5">Biopic</option>
+        </select><br><br>
+
+        <input type="button" value="Submit form" onclick="submitForm()">
+        <input type="reset" value="CLEAR">
+    </form>
+
+    <div id="results"></div>
+
+    <script>
+        function submitForm() {
+            var form = document.getElementById('surveyForm');
+            var resultsDiv = document.getElementById('results');
+
+            // Clear previous results
+            resultsDiv.innerHTML = "";
+
+            // Create a new div to display results
+            var resultsContainer = document.createElement('div');
+
+            // Iterate through form elements and display their values
+            for (var i = 0; i < form.elements.length; i++) {
+                var element = form.elements[i];
+                if (element.type !== "button" && element.type !== "reset") {
+                    var resultItem = document.createElement('p');
+                    resultItem.innerHTML = "<strong>" + element.name + ":</strong> " + element.value;
+                    resultsContainer.appendChild(resultItem);
+                }
+            }
+
+            // Append the results to the results div
+            resultsDiv.appendChild(resultsContainer);
+        }
+    </script>
+</body>
+</html>
